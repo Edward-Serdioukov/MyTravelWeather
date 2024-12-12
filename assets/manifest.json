@@ -1,7 +1,7 @@
 {
   "name": "My Travel Weather App",
-  "short_name": "MyWeatherTravel",
-  "start_url": "/",
+  "short_name": "MyTravelWeather",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0066cc",

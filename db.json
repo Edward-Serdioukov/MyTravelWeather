@@ -1,11 +1,1 @@
-[
-    {"name": "Milan", "lat": 45.4642, "lon": 9.1895}, 
-    {"name": "Prague", "lat": 50.0878, "lon": 14.4205}, 
-    {"name": "Marianske Lazne", "lat": 49.96489, "lon": 12.7007}, 
-    {"name": "Venezia", "lat": 45.4944, "lon": 12.3714}, 
-    {"name": "Minsk", "lat": 53.9044, "lon": 27.5614}, 
-    {"name": "Moscow", "lat": 55.7558, "lon": 37.6173}, 
-    {"name": "Poznan", "lat": 52.4064, "lon": 16.9252},      
-    {"name": "Warsaw", "lat": 52.2297, "lon": 21.0122},   
-    {"name": "Vilnius", "lat": 54.6872, "lon": 25.2797}
-]
+{"_default": {"1": {"name": "Minsk", "lat": 53.9024716, "lon": 27.5618225, "comp": true}, "3": {"name": "Warsaw", "lat": 52.2319581, "lon": 21.0067249, "comp": true}, "4": {"name": "Prague", "lat": 50.0874654, "lon": 14.4212535, "comp": false}, "5": {"name": "Poznan", "lat": 52.4006632, "lon": 16.91973259178088, "comp": true}}}

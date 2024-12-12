@@ -53,6 +53,23 @@ def get_weather_day(city_name):
     else:
         return None
 
+def get_geo_data(city_name):
+    geocoding_url = f"http://api.openweathermap.org/geo/1.0/direct?q={city_name}&appid={API_KEY}"
+    geo_response = requests.get(geocoding_url)
+    
+    if geo_response.status_code == 200:
+        geo_data = geo_response.json()
+        if len(geo_data) == 0:
+            return None
+
+        lat = geo_data[0]['lat']
+        lon = geo_data[0]['lon']
+        
+    if get_weather_day(city_name) == None:
+        return None
+    
+    return lat, lon
+
 def get_weather_week(city_name):
     geocoding_url = f"http://api.openweathermap.org/geo/1.0/direct?q={city_name}&appid={API_KEY}"
     geo_response = requests.get(geocoding_url)
@@ -90,7 +107,10 @@ def get_weather_week(city_name):
                     'icon': f"http://openweathermap.org/img/wn/{day['weather'][0]['icon']}@2x.png"
                 })
             
-            return daily_forecast
+            return {
+                'city': city_name,
+                'forecast': daily_forecast
+            }
         else:
             return None
     else:

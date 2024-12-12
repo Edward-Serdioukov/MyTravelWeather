@@ -3,25 +3,32 @@ from flet import *
 import flet
 from flet import Page
 
-from views.weather_view import WeatherTravel
+from views.weather_view import TravelWeather
 
 #logging.basicConfig(level=logging.DEBUG)
 
 def main(page: Page):
 
-    weather_travel = WeatherTravel(page)
-    weather_travel_view = weather_travel.view()
-    weather_travel_map = weather_travel.weather_travel_map_view()
-
-
+    travel_weather = TravelWeather(page)
+    travel_weather_week_view = travel_weather.travel_weather_week_view()
+    travel_weather_cities_view = travel_weather.travel_weather_cities_view()
+    travel_weather_map_view = travel_weather.travel_weather_map_view()
+    travel_weather_compare_settings_view = travel_weather.compare_settings_view()
+    
     def route_change(route):
         page.views.clear()
-        if page.route == "/weather_travel":
-            page.views.append( weather_travel_map
-            )
-        elif page.route == "/daily_weather":
-            page.views.append( weather_travel_view
-            )
+        if page.route == "/travel_weather":
+            #travel_weather.refresh_map_markers()
+            page.views.append( travel_weather_map_view)
+        elif page.route == "/travel_weather_week_compare":
+            #travel_weather.refresh_compare_table()
+            page.views.append( travel_weather_week_view)
+        elif page.route == "/travel_weather_cities":
+            travel_weather.appbar.title = Text("Cities")
+            page.views.append( travel_weather_cities_view)
+        elif page.route == "/travel_weather_compare_settings":
+            page.views.append( travel_weather_week_view)
+            page.views.append( travel_weather_compare_settings_view)
 
         page.update()
 
@@ -31,68 +38,13 @@ def main(page: Page):
         page.go(top_view.route)
     
 
-    def show_image_modal(e):
-        """
-        Shows a modal dialog with the image and some information about the app.
-
-        The dialog contains a close button that the user can click to
-        close the dialog.
-
-        Args:
-            e (Event): The event that triggered the modal dialog.
-        """
-        def close_dlg(e):
-            """
-            Closes the dialog when the close button is clicked.
-            """
-            dlg_modal.open = False
-            page.update()
-
-        # Create the image that will be displayed in the dialog
-        image = flet.Image(src='icons/logo1.png', width=200, height=200) 
-        
-        # Create the modal dialog with the image and some information
-        dlg_modal = flet.AlertDialog(
-            modal=True,
-            title=flet.Text("About"),
-            content=flet.Column([
-                image,
-                flet.ListTile(
-                    title=flet.Text("My coins collection"),
-                    subtitle=flet.Text(
-                        spans=[
-                            flet.TextSpan(
-                                "e-mail: mycoins92@gmail.com", 
-                                flet.TextStyle(decoration=flet.TextDecoration.UNDERLINE),
-                                url="mailto: mycoins92@gmail.com", 
-                            )
-                        ],
-                        size=10,
-                    ),
-                    #f"Key: {e.key}, Shift: {e.shift}, Control: {e.ctrl}, Alt: {e.alt}, Meta: {e.meta}"
-                )
-            ], alignment=flet.MainAxisAlignment.CENTER, horizontal_alignment=flet.CrossAxisAlignment.CENTER, height=300),
-            actions=[flet.TextButton("Close", on_click=lambda e: close_dlg(e))],
-            actions_alignment=flet.MainAxisAlignment.END,
-        )            
-        # Show the dialog
-        page.dialog = dlg_modal
-        dlg_modal.open = True
-        page.update()
-
-    def on_keyboard(e: flet.KeyboardEvent):
-        if e.key.upper() == 'A':
-            show_image_modal(e)
- 
-
-    page.on_keyboard_event = on_keyboard
-
     page.on_route_change = route_change
     page.on_view_pop = view_pop
 
-    page.go("/weather_travel")
-###flet.app(target=main, assets_dir="assets", view=AppView.WEB_BROWSER, upload_dir="assets/images", port=8000)
+    page.go("/travel_weather")
+    
+flet.app(target=main, assets_dir="assets", view=AppView.WEB_BROWSER, upload_dir="assets/images", port=8000)
 #
-flet.app(target=main, assets_dir="assets")
+#flet.app(target=main, assets_dir="assets")
 #flet.app(main) ###flet run --web main.py
 
