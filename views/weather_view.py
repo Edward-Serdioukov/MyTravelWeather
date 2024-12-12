@@ -125,6 +125,15 @@ class TravelWeather():
                 ), 
             ],
         )
+        self.progress_ring = flet.ProgressRing(stroke_width = 5)
+
+        self.splash = Container(
+            content=self.progress_ring,
+            expand=True,
+            alignment=alignment.center,
+            visible=False
+        )
+        self.page.overlay.append(self.splash)
         
     def navbar_event(self, e):
         if e.control.selected_index == 0:
@@ -137,18 +146,29 @@ class TravelWeather():
             self.page.go("/more")
 
     def refresh_compare_table(self):
+        self.show_progress()
         self.compare_table.columns.clear()
         self.compare_table.rows.clear()
         self.create_compare_table()
+        self.hide_progress()
         self.page.update()
 
         
     def refresh_map_markers(self):
+        self.show_progress()
         self.markers.clear()
         self.create_map()
+        self.hide_progress()
         self.page.update()
 
+    def show_progress(self):
+        self.splash.visible = True
+        self.page.update()
 
+    def hide_progress(self):
+        self.splash.visible = False
+        self.page.update()
+        
     def theme_changed(self, e):
         if self.page.theme_mode == ThemeMode.LIGHT:
             self.page.theme_mode = ThemeMode.DARK
