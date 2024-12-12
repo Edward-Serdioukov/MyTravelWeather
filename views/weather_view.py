@@ -77,7 +77,8 @@ class TravelWeather():
             destinations=[
                 NavigationBarDestination(icon=icons.MAP, label="Map"),
                 NavigationBarDestination(icon=icons.COMPARE_OUTLINED, label="Compare"), #CLOUD_DONE_OUTLINED
-                NavigationBarDestination(icon=icons.MAPS_HOME_WORK, label="Cities"),
+                NavigationBarDestination(icon=icons.SETTINGS, label="Settings"),
+                #NavigationBarDestination(icon=icons.MAPS_HOME_WORK, label="Cities"),
             ],
             on_change=lambda e: self.navbar_event(e),
         )
@@ -294,7 +295,7 @@ class TravelWeather():
             #bgcolor=colors.SURFACE_VARIANT,
             actions=[
                 IconButton(icon=flet.icons.REFRESH_OUTLINED, on_click=self.travel_weather_map_clicked),
-                IconButton(icon=flet.icons.WB_SUNNY_OUTLINED, on_click=self.theme_changed)
+                #IconButton(icon=flet.icons.WB_SUNNY_OUTLINED, on_click=self.theme_changed)
             ],
         )
         self.create_map()                                            
@@ -361,7 +362,7 @@ class TravelWeather():
             actions=[
                 #IconButton(icons.CLOUD_DONE_OUTLINED, on_click=lambda _: self.page.go("/travel_weather_compare_settings")),
                 IconButton(icon=flet.icons.REFRESH_OUTLINED, on_click=self.travel_weather_week_compare_clicked),
-                IconButton(icon=flet.icons.WB_SUNNY_OUTLINED, on_click=self.theme_changed)
+                #IconButton(icon=flet.icons.WB_SUNNY_OUTLINED, on_click=self.theme_changed)
             ],
         )
 

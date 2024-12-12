@@ -24,7 +24,7 @@ def main(page: Page):
             #travel_weather.refresh_compare_table()
             page.views.append( travel_weather_week_view)
         elif page.route == "/travel_weather_cities":
-            travel_weather.appbar.title = Text("Cities")
+            travel_weather.appbar.title = Text("Settings")
             page.views.append( travel_weather_cities_view)
         elif page.route == "/travel_weather_compare_settings":
             page.views.append( travel_weather_week_view)
